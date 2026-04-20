@@ -1,0 +1,25 @@
+.modal.fade#signupModal(tabindex="-1", aria-labelledby="signupModalLabel", aria-hidden="true")
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h1#signupModalLabel.modal-title.fs-5 Regisztráció
+        button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+      .modal-body
+        .alert.alert-danger.d-none#signupErrorAlert(role="alert") Néhány adattal hiba merült fel.
+        form#signupForm
+          .mb-3
+            label.form-label(for="signupName") Felhasználónév
+            input#signupName.form-control(type="text", required)
+          .mb-3
+            label.form-label(for="signupEmail") Email cím
+            input#signupEmail.form-control(type="email", required)
+          .mb-3
+            label.form-label(for="signupPassword") Jelszó
+            input#signupPassword.form-control(type="password", required)
+          .mb-3
+            label.form-label(for="signupPasswordConfirm") Jelszó megerősítése
+            input#signupPasswordConfirm.form-control(type="password", required)
+          button.btn.btn-primary.w-100(type="submit") Regisztráció
+        .text-center.mt-3
+          small Van már fiókod? 
+            a(href="#", data-bs-dismiss="modal", data-bs-toggle="modal", data-bs-target="#loginModal") Jelentkezz be

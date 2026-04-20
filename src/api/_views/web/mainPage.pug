@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .container-fluid.p-0
+    .hero.text-lg-start.text-center.ps-lg-10.p-5.p-sm-0.pt-sm-30.d-flex.d-sm-block
+      h1.d-none.d-sm-block.fw-bold.mx-lg-6.text-left RANGER
+      p.d-none.d-sm-block.mb-2.pb-5 Tábor menedzsment szoftver
+      .d-flex.d-sm-none.text-center.flex-column.align-items-center.h-100.justify-content-center.h-auto
+        img.img-fluid.img.mx-auto.m.w-75(src="/src/RangerLogo1200.png")
+        h1.mx-auto.mt-5 RANGER
+
+    .main-section
+      h2 Amit kínálunk:
+
+    .subLines.mt-5
+      .row.flex.flex-column.flex-lg-row.mb-5.bg-primary.g-0
+        .pic-container.col-lg-5.col-12.h-auto
+          img.img-fluid.grey-img.object-fit-cover(src="/src/group.jpg", alt="Group image")
+        .text-container.col-lg-7.col-12
+          .text-block.text-center.text-lg-end
+            h3 Kövesse nyomon a csapatokat
+            p.fs-4 Valósidőben értesül, ha egy csoportja szétszakad. Ezt nyomon is tudja követni az alkalmazásba beépített térképen. A térképen mint szervező látja az összes résztvevőt és ők is látják önt és a csoportjukat, így is megkönnyítve az újracsoportosulást.
+
+      .row.flex.flex-column-reverse.flex-lg-row.mb-5.mt-5.bg-secondary.g-0
+        .text-container.col-lg-7.col-12
+          .text-block.text-center.text-lg-start
+            h3 Érje el őket gyorsan, könnyen
+            p.fs-4 Az alkalmazásba beépített chat funkcióval könnyen tudnak kommunikálni eggyes csoportokkal vagy az egész táborral egyszerre. A csatolt információk segítségével pedig offline is érje el őket az eggyik megadott elérhetősége.
+        .pic-container.col-lg-5.col-12.h-auto
+          img.img-fluid.grey-img.object-fit-cover(src="/src/call.jpg", alt="Grey image")
+
+      .row.flex.flex-column.flex-lg-row.mt-5.bg-accent.g-0
+        .pic-container.col-lg-5.col-12.h-auto
+          img.img-fluid.grey-img.object-fit-cover(src="/src/admin.jpg", alt="Grey image")
+        .text-container.col-lg-7.col-12
+          .text-block.text-center.text-lg-end
+            h3 Könnyítse meg az adminisztrációt
+            p.fs-4 Végezze el a tábor létrehozását pár kattintással. Az alkalmazás megkönnyíti az adminisztrációt, hogy ön a többi dologra fókuszálhasson! Legyen szó a regisztrációk, befizetések vagy szobabeosztás szervezéséről.

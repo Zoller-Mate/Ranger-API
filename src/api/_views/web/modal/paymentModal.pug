@@ -1,0 +1,174 @@
+div.modal.fade#paymentModal(tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true")
+    div.modal-dialog
+        div.modal-content
+            div.modal-header
+                h5#paymentModalLabel.modal-title Befizetés hozzáadása
+                button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+            div.modal-body
+                form#paymentForm(data-paymentid="")
+                    div.mb-3
+                        label.form-label(for="paymentName") Cím
+                        input#paymentName.form-control(type="text", required)
+                    div.mb-3
+                        label.form-label(for="paymentDueDate") Befizetési atáridő
+                        input#paymentDueDate.form-control(type="date", required)
+                    div.mb-3
+                        label.form-label(for="paymentAmount") Összeg
+                        div.input-group
+                            input#paymentAmount.form-control(type="number" step="0.01" min="0", required)
+                            select#paymentCurrency.form-select
+                                option(value="AED") AED
+                                option(value="AFN") AFN
+                                option(value="ALL") ALL
+                                option(value="AMD") AMD
+                                option(value="AOA") AOA
+                                option(value="ARS") ARS
+                                option(value="AUD") AUD
+                                option(value="AWG") AWG
+                                option(value="AZN") AZN
+                                option(value="BSD") BSD
+                                option(value="BHD") BHD
+                                option(value="BDT") BDT
+                                option(value="BBD") BBD
+                                option(value="BYN") BYN
+                                option(value="BZD") BZD
+                                option(value="BMD") BMD
+                                option(value="BND") BND
+                                option(value="BOB") BOB
+                                option(value="BOV") BOV
+                                option(value="BRL") BRL
+                                option(value="BWP") BWP
+                                option(value="CAD") CAD
+                                option(value="CDF") CDF
+                                option(value="CHF") CHF
+                                option(value="CLF") CLF
+                                option(value="CLP") CLP
+                                option(value="CNY") CNY
+                                option(value="COP") COP
+                                option(value="COU") COU
+                                option(value="CRC") CRC
+                                option(value="CUP") CUP
+                                option(value="CVE") CVE
+                                option(value="CZK") CZK
+                                option(value="DJF") DJF
+                                option(value="DKK") DKK
+                                option(value="DOP") DOP
+                                option(value="EGP") EGP
+                                option(value="ERN") ERN
+                                option(value="ETB") ETB
+                                option(value="EUR") EUR
+                                option(value="FJD") FJD
+                                option(value="FKP") FKP
+                                option(value="GBP") GBP
+                                option(value="GEL") GEL
+                                option(value="GHS") GHS
+                                option(value="GIP") GIP
+                                option(value="GMD") GMD
+                                option(value="GNF") GNF
+                                option(value="GTQ") GTQ
+                                option(value="GYD") GYD
+                                option(value="HKD") HKD
+                                option(value="HNL") HNL
+                                option(value="HTG") HTG
+                                option(value="HUF", selected) HUF
+                                option(value="IDR") IDR
+                                option(value="ILS") ILS
+                                option(value="INR") INR
+                                option(value="IQD") IQD
+                                option(value="IRR") IRR
+                                option(value="ISK") ISK
+                                option(value="JMD") JMD
+                                option(value="JOD") JOD
+                                option(value="JPY") JPY
+                                option(value="KES") KES
+                                option(value="KGS") KGS
+                                option(value="KHR") KHR
+                                option(value="KMF") KMF
+                                option(value="KPW") KPW
+                                option(value="KRW") KRW
+                                option(value="KWD") KWD
+                                option(value="KYD") KYD
+                                option(value="KZT") KZT
+                                option(value="LAK") LAK
+                                option(value="LBP") LBP
+                                option(value="LSL") LSL
+                                option(value="LYD") LYD
+                                option(value="MAD") MAD
+                                option(value="MDL") MDL
+                                option(value="MGA") MGA
+                                option(value="MKD") MKD
+                                option(value="MMK") MMK
+                                option(value="MNT") MNT
+                                option(value="MOP") MOP
+                                option(value="MRU") MRU
+                                option(value="MUR") MUR
+                                option(value="MVR") MVR
+                                option(value="MWK") MWK
+                                option(value="MXN") MXN
+                                option(value="MXV") MXV
+                                option(value="MYR") MYR
+                                option(value="MZN") MZN
+                                option(value="NAD") NAD
+                                option(value="NGN") NGN
+                                option(value="NIO") NIO
+                                option(value="NOK") NOK
+                                option(value="NPR") NPR
+                                option(value="NZD") NZD
+                                option(value="OMR") OMR
+                                option(value="PAB") PAB
+                                option(value="PEN") PEN
+                                option(value="PGK") PGK
+                                option(value="PHP") PHP
+                                option(value="PKR") PKR
+                                option(value="PLN") PLN
+                                option(value="PYG") PYG
+                                option(value="QAR") QAR
+                                option(value="RON") RON
+                                option(value="RSD") RSD
+                                option(value="RUB") RUB
+                                option(value="RWF") RWF
+                                option(value="SAR") SAR
+                                option(value="SBD") SBD
+                                option(value="SCR") SCR
+                                option(value="SDG") SDG
+                                option(value="SEK") SEK
+                                option(value="SGD") SGD
+                                option(value="SHP") SHP
+                                option(value="SLE") SLE
+                                option(value="SOS") SOS
+                                option(value="SRD") SRD
+                                option(value="SSP") SSP
+                                option(value="STN") STN
+                                option(value="SVC") SVC
+                                option(value="SYP") SYP
+                                option(value="SZL") SZL
+                                option(value="THB") THB
+                                option(value="TJS") TJS
+                                option(value="TMT") TMT
+                                option(value="TND") TND
+                                option(value="TOP") TOP
+                                option(value="TRY") TRY
+                                option(value="TTD") TTD
+                                option(value="TWD") TWD
+                                option(value="TZS") TZS
+                                option(value="UAH") UAH
+                                option(value="UGX") UGX
+                                option(value="USD") USD
+                                option(value="UYU") UYU
+                                option(value="UZS") UZS
+                                option(value="VES") VES
+                                option(value="VND") VND
+                                option(value="VUV") VUV
+                                option(value="WST") WST
+                                option(value="XAF") XAF
+                                option(value="XCD") XCD
+                                option(value="XDR") XDR
+                                option(value="XOF") XOF
+                                option(value="XPF") XPF
+                                option(value="YER") YER
+                                option(value="ZAR") ZAR
+                                option(value="ZMW") ZMW
+                    button.btn.btn-primary(type="submit") Befizetés mentése
+            div.modal-footer
+                button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Mégse
+

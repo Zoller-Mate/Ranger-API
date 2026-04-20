@@ -1,0 +1,121 @@
+extends layout
+
+block title
+    title Ranger - #{campName}
+
+block scripts
+    script(src='/js/campInfo.js' defer)
+
+block content
+    .d-none#campId= campId
+    .container-fluid
+        .row
+            // Sidebar
+            .col-12.col-md-3.col-lg-2.bg-light.min-vh-100.p-3
+                h5.mb-4 Tábor Menü
+                .nav.flex-column.nav-pills(
+                    id="camp-tabs"
+                    role="tablist"
+                )
+                    button.nav-link.active(
+                        data-bs-toggle="pill"
+                        data-bs-target="#general"
+                        type="button"
+                    ) Alap információk
+
+                    if userRole === "Camper"
+                        button.nav-link(
+                            data-bs-toggle="pill"
+                            data-bs-target="#payments"
+                            type="button"
+                        ) Befizetések
+
+                    button.nav-link.text-danger(
+                        data-bs-toggle="pill"
+                        data-bs-target="#leave"
+                        type="button"
+                    ) Tábor elhagyása
+
+            // Main content
+            .col-12.col-md-9.col-lg-10.p-4
+                .tab-content
+
+                    // General Info Tab
+                    .tab-pane.fade.show.active#general
+                        h3.mb-4 Alap információk
+
+                        .row.mb-3
+                            .col-md-6
+                                label.form-label.fw-bold Csatlakozási kód:
+                                p.form-control-plaintext#joinCode
+
+                            .col-md-6
+                                label.form-label.fw-bold Tábor neve:
+                                p.form-control-plaintext#campName
+
+                        .row.mb-3
+                            .col-md-6
+                                label.form-label.fw-bold Kezdő dátum:
+                                p.form-control-plaintext#startDate
+
+                            .col-md-6
+                                label.form-label.fw-bold Záró dátum:
+                                p.form-control-plaintext#endDate
+
+                        .row.mb-3
+                            .col-md-6
+                                label.form-label.fw-bold Szereped a táborban:
+                                p.form-control-plaintext#role
+
+                        hr.my-4
+
+                        h5.mb-3 Tábor tulajdonosa:
+
+                        .d-flex.align-items-center.gap-3.mb-3
+                            img.rounded-circle#ownerProfilePic(
+                                alt="Owner Profile Picture",
+                                width="80",
+                                height="80"
+                            )
+
+                            div
+                                h6.mb-1#ownerName
+                                p.text-muted.mb-0#ownerEmail
+                                p.text-muted.mb-0#ownerPhone
+
+                    // Payments Tab
+                    if userRole === "Camper"
+                        .tab-pane.fade#payments
+                            h3.mb-4 Befizetések
+                            .d-flex.justify-content-center.mb-4
+                                .btn-group(role="group" aria-label="isPaid")
+                                    input.btn-check.gradient-radio-button-left#unPaid(type="radio" name="isPaid" checked)
+                                    label.btn.btn-outline-primary.btn-lg.px-5(for="unPaid") Függőben
+
+                                    input.btn-check.gradient-radio-button-right#paid(type="radio" name="isPaid")
+                                    label.btn.btn-outline-secondary.btn-lg.px-5(for="paid") Befizetve
+
+                            .row.g-4#cardHolder
+
+                // Leave Camp Tab
+                .tab-pane.fade#leave
+                    h3.text-danger.mb-3 Tábor elhagyása
+                    p.text-muted
+                        | Ha elhagyja a tábort, többé nem fog hozzáférni a tábor adataihoz.
+                    button.btn.btn-danger#leaveCampBtn Tábor elhagyása
+
+
+block modals
+    .modal.fade#leaveCampModal(tabindex="-1")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title.text-danger Tábor elhagyásának megerősítése
+                    button.btn-close(type="button", data-bs-dismiss="modal")
+
+                .modal-body
+                    p Biztosan el szeretné hagyni a tábort?
+
+                .modal-footer
+                    button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Mégse
+                    button.btn.btn-danger#leaveCampConfirmBtn(type="button") Igen, kilépek

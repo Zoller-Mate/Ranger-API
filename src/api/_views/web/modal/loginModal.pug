@@ -1,0 +1,22 @@
+.modal.fade#loginModal(tabindex="-1", aria-labelledby="loginModalLabel", aria-hidden="true")
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h1#loginModalLabel.modal-title.fs-5 Bejelentkezés
+        button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+      .modal-body
+        .alert.alert-danger.d-none#loginErrorAlert(role="alert") Rossz email cím vagy jelszó.
+        form#loginForm
+          .mb-3
+            label.form-label(for="loginEmail") Email cím
+            input#loginEmail.form-control(type="email", required)
+          .mb-3
+            label.form-label(for="loginPassword") Jelszó
+            input#loginPassword.form-control(type="password", required)
+          button.btn.btn-primary.w-100(type="submit") Bejelentkezés
+        .text-center.mt-3
+          small Nincs még fiókod? 
+            a(href="#", data-bs-dismiss="modal", data-bs-toggle="modal", data-bs-target="#signupModal") Regisztrálj most
+          br
+          small
+            a(href="#", data-bs-dismiss="modal", data-bs-toggle="modal", data-bs-target="#passwordResetModal") Elfelejtetted a jelszavad?

@@ -1,0 +1,47 @@
+nav.navbar.navbar-expand-lg.bg-body-tertiary
+  .container-fluid.px-4
+    a.navbar-brand(href="/")
+      img.d-inline-block.align-text-top(src="/src/RangerLogo1200.png", alt="Icon", width="30", height="30")
+      | &nbsp;Ranger
+    button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarSupportedContent", aria-controls="navbarSupportedContent", aria-expanded="false", aria-label="Toggle navigation")
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(aria-current="page", href="/") Főoldal
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(href="#", role="button", data-bs-toggle="dropdown", aria-expanded="false") Dokumentációk
+          ul.dropdown-menu
+            li
+              a.dropdown-item(href="/docs/user")
+                i.bi.bi-file-earmark-fill
+                | &nbsp;Felhasználói dokumentáció
+            li
+              a.dropdown-item(href="/docs/dev")
+                i.bi.bi-file-earmark-binary-fill
+                | &nbsp;Fejlesztői dokumentáció
+        li.nav-item#campsMenu(style="display: none;")
+          a.nav-link(href="/camps") Táborok
+      ul.navbar-nav.ms-auto.mb-2.mb-lg-0.d-flex.align-items-center.gap-2
+        li#authSection.nav-item
+          button#loginBtn.btn.btn-outline-primary.me-2(type="button", data-bs-toggle="modal", data-bs-target="#loginModal") Bejelentkezés
+          button#signupBtn.btn.btn-primary(type="button", data-bs-toggle="modal", data-bs-target="#signupModal") Regisztráció
+        li#profileSection.nav-item.dropdown(style="display: none;")
+          a#profileLink.nav-link.dropdown-toggle(href="#", role="button", data-bs-toggle="dropdown", aria-expanded="false")
+            img#profileAvatar.rounded-circle.me-2(src="", alt="Profile", width="32", height="32")
+            span#profileName
+          ul.dropdown-menu.dropdown-menu-end
+            li
+              a.dropdown-item(href="/profile")
+                i.bi.bi-person-gear
+                | &nbsp;Profil beállítások
+            li
+              a.dropdown-item(href="/payments")
+                i.bi.bi-credit-card
+                | &nbsp;Befizetések
+            li
+              hr.dropdown-divider
+            li
+              a#logoutBtn.dropdown-item(href='/')
+                i.bi.bi-box-arrow-right
+                | &nbsp;Kijelentkezés

@@ -1,0 +1,11 @@
+.modal.fade#messageModal(tabindex="-1", aria-labelledby="messageModalLabel", aria-hidden="true")
+    .modal-dialog.modal-dialog-centered
+        .modal-content.border-primary
+            .modal-header.bg-primary-subtle
+                h1#messageModalLabel.modal-title.fs-5.text-primary
+                    | Üzenet
+                button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+            .modal-body
+                p#modalMessage "üzenet"
+            .modal-footer
+                button.btn.btn-primary(type="button", data-bs-dismiss="modal") Bezárás

@@ -1,0 +1,11 @@
+.modal.fade#errorModal(tabindex="-1", aria-labelledby="errorModalLabel", aria-hidden="true")
+  .modal-dialog.modal-dialog-centered
+    .modal-content.border-danger
+      .modal-header.bg-danger-subtle
+        h1#errorModalLabel.modal-title.fs-5.text-danger
+          | Hiba
+        button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+      .modal-body
+        p#errorMessage Valami hiba történt. Kérlek, próbálkozz később!
+      .modal-footer
+        button.btn.btn-danger(type="button", data-bs-dismiss="modal") Bezárás

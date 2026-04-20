@@ -1,0 +1,192 @@
+extends layout
+
+block title
+    title Ranger - #{campName}
+
+block scripts
+    script(src='/js/camp.js' defer)
+
+block content
+    .d-none#campId= campId
+    .container-fluid
+        .row
+            .col-12.col-md-3.col-lg-2.bg-light.min-vh-100.p-3
+                h5.mb-4 Tábor Vezérlő
+                .nav.flex-column.nav-pills(
+                    id="camp-tabs"
+                    role="tablist"
+                )
+                    button.nav-link(
+                        data-bs-toggle="pill"
+                        data-bs-target="#general"
+                        type="button"
+                    ) Alap beállítások
+                    button.nav-link.active(
+                        data-bs-toggle="pill"
+                        data-bs-target="#participants"
+                        type="button"
+                    ) Táborozók
+                    button.nav-link(
+                        data-bs-toggle="pill"
+                        data-bs-target="#payments"
+                        type="button"
+                    ) Befizetések
+                    button.nav-link.text-danger(
+                        data-bs-toggle="pill"
+                        data-bs-target="#delete"
+                        type="button"
+                    ) Tábor törlése
+
+            // Main content
+            .col-12.col-md-9.col-lg-10.p-4
+                .tab-content
+
+                    // General Tab
+                    .tab-pane.fade#general
+                        h3.mb-4 Alap Beállítások
+                        form#campDataForm
+                            .row.mb-3
+                                .col-md-6
+                                    label.form-label(for="name") Tábor neve
+                                    input.form-control#name(type="text")
+                                .col-md-6
+                                    label.form-label(for="joinCode") Csatlakozási kód
+                                    input.form-control#joinCode(type="text")
+
+                            .row.mb-3
+                                .col-md-6
+                                    label.form-label(for="startDate") Az első nap dátuma
+                                    input.form-control#startDate(type="date")
+                                .col-md-6
+                                    label.form-label(for="endDate") Az utolsó nap dátuma
+                                    input.form-control#endDate(type="date")
+
+                            .row.mb-3
+                                .col-md-6
+                                    label.form-label(for="minGroupSize") Legkisebb csoport létszáma
+                                    input.form-control#minGroupSize(type="number" min="1")
+
+                            .d-flex.gap-2
+                                button.btn.btn-secondary#resetCampData(type="reset") Mégse
+                                button.btn.btn-primary(type="submit") Módsítások mentése
+
+                        button.mt-5.btn.btn-outline-primary#downloadQRCode QR Kód letöltése.&nbsp;
+                            i.bi.bi-cloud-arrow-down.me-2
+
+                    // Participants Tab
+                    .tab-pane.fade.show.active#participants
+                        h3.mb-4 Táborozók
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th Név
+                                    th Email cím
+                                    th Szerep
+                            tbody#participantsTableBody
+
+                    // Payments Tab
+                    .tab-pane.fade#payments
+                        h3.mb-4 Befizetések
+                        button.btn.btn-primary.mb-4#addPaymentBtn Tétel hozzáadása
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th Cím
+                                    th Befizetési Határidő
+                                    th Összeg
+                            tbody#paymentsTableBody
+
+                    // Delete Tab
+                    .tab-pane.fade#delete
+                        h3.text-danger.mb-3 Tábor törlése
+                        p.text-muted Ez a művelet visszavonhatatlan, azzal hgy törli a tábort, töröl minden adatot, ami a táborhoz kapcsolódik
+                        button.btn.btn-danger#deleteCampBtn Tábor törlése
+
+block modals
+    .modal.fade#deleteCampModal(tabindex="-1")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title.text-danger Tábor törlésének megerősítése
+                    button.btn-close(type="button", data-bs-dismiss="modal")
+                .modal-body
+                    p Biztos törölni szeretné a tábort?
+                .modal-footer
+                    button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Mégse
+                    button.btn.btn-danger#deleteCampConfirmButton(type="button") Igen, törlés!
+
+    .modal.fade#kickParticipantModal(tabindex="-1")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title.text-danger Táborozó eltávolítása
+                    button.btn-close(type="button", data-bs-dismiss="modal")
+                .modal-body
+                    p Biztos el szeretné távolítani a táborozót?
+                .modal-footer
+                    button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Mégse
+                    button.btn.btn-danger#kickSubmitBtn(type="button") Igen, eltávolítás!
+
+    .modal.fade#deletePaymentModal(tabindex="-1")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title.text-danger Befizetés eltávolítása
+                    button.btn-close(type="button", data-bs-dismiss="modal")
+                .modal-body
+                    p Biztos el szeretné távolítani a befizetést?
+                .modal-footer
+                    button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Mégse
+                    button.btn.btn-danger#deletePaymentSubmit(type="button") Igen, eltávolítás!
+
+    .modal.fade#participantPaymentModal(tabindex='-1', aria-labelledby='participantPaymentModalLabel', aria-hidden='true')
+        .modal-dialog.modal-md.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title#participantPaymentModalLabel Befizetések
+                    button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+                .modal-body
+                    table.table.table-bordered.align-middle
+                        thead.table-light
+                            tr
+                                th Cím
+                                th.text-center Fizetve
+                        tbody#participantPaymentTableBody
+
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Bezárás
+
+    .modal.fade#participantModal(tabindex='-1', aria-labelledby='profileModalLabel', aria-hidden='true')
+        .modal-dialog.modal-md.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title#profileModalLabel Felhasználó
+                    button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+
+                .modal-body.text-center
+                    img.rounded-circle.mb-3#participantModalProfilePic(
+                        alt='Profile Picture',
+                        width='96',
+                        height='96'
+                    )
+
+                    h6.mb-1#participantModalName John Doe
+                    p.text-muted.mb-3#participantModalEmail john.doe@example.com
+
+                    ul.list-group.list-group-flush.text-start
+                        li.list-group-item
+                            strong Születési dátum:
+                            p#participantModalBirthDate
+                        li.list-group-item
+                            strong Telefonszám:
+                            p#participantModalPhoneNum
+                        li.list-group-item
+                            strong Beosztás:
+                            p#participantModalRole
+                        li.list-group-item
+                            strong Vészhelyzet estén értesítendő:
+                            p#participantModalContact  Jane Doe — +1 555 123 4567
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Bezárás
+
+    include modal/paymentModal

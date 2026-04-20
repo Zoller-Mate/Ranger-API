@@ -1,0 +1,15 @@
+extends layout
+
+block title
+    title Email cím megerősítve!
+
+block scripts
+    script(src='/js/confirmEmail.js' defer)
+
+block content
+    p.d-none #{token}
+    .m-auto.mt-5.text-center.w-auto
+        h1#mainMsg Az email címed megerősítése folyamatban van...
+        p#confirmMsg
+
+

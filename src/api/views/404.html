@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8">
+    <title>404 - Oldal nem található</title>
+    <link rel="icon" type="image/x-icon" href="src/RangerLogoIcon.ico">
+    <!--<link rel="stylesheet" href="./css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="css/main.css"/>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .error-container {
+        text-align: center;
+      }
+      .error-code {
+        font-size: 120px;
+        font-weight: bold;
+        color: #FF9649;
+        margin: 0;
+      }
+      .error-title {
+        font-size: 32px;
+        color: #333;
+        margin: 20px 0;
+      }
+      .error-message {
+        font-size: 18px;
+        color: #666;
+        margin: 20px 0;
+      }
+      .error-actions {
+        margin-top: 40px;
+      }
+      .error-actions a {
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <p class="error-code">404</p>
+      <h1 class="error-title">Oldal nem található</h1>
+      <p class="error-message">Sajnos az, amit kerestel, nem található. Kérlek ellenőrizd, hogy mindent jól írtál e be az URL-be.</p>
+      
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">Vissza a főoldalra</a>
+        <button class="btn btn-secondary" onclick="back()">Vissza az előző oldalra</button>
+      </div>
+    </div>
+
+    <script language="javascript" src="js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+extends layout
+
+block title
+    title Ranger - Profil beállítások
+
+block head
+    link(rel="stylesheet", href="/cropper.css")
+
+block scripts
+    script(src="cropper.js" defer)
+    script(src="./js/profile.js" defer)
+
+block content
+    main.container.py-4
+        .container-fluid.mt-4
+            .row
+                // Left-side menu
+                .col-md-3.col-lg-2.border-md-end
+                    .list-group.list-group-flush
+                        a.list-group-item.list-group-item-action.active(
+                            data-bs-toggle="list",
+                            href="#profile-data"
+                        ) Profil adatok
+                        a.list-group-item.list-group-item-action(
+                            data-bs-toggle="list",
+                            href="#change-password"
+                        ) Jelszó megváltoztatása
+                        a.list-group-item.list-group-item-action.text-danger(
+                            data-bs-toggle="list",
+                            href="#delete-account"
+                        ) Fiók törlése
+
+                // Main content
+                .col-md-9.col-lg-10
+                    .tab-content
+                        // Profile Data Tab
+                        .tab-pane.fade.show.active#profile-data
+                            h3.mb-4 Profil Információ
+
+                            .row
+                                // Profile picture
+                                .col-md-4.text-center
+                                    img.rounded-circle.mb-3#profilePic(
+                                        src="...",
+                                        alt="Profile Picture",
+                                        width="150",
+                                        height="150"
+                                    )
+                                    .d-grid.gap-2
+
+                                        button.btn.btn-outline-primary.btn-sm#profilePickCsere Profilkép cseréje
+                                        button.btn.btn-outline-danger.btn-sm#removePictureBtn Profilkép eltávolítása
+
+                                // Profile form
+                                .col-md-8
+                                    form#personForm
+                                        .mb-3
+                                            label.form-label Név
+                                            input.form-control#name(type="text", readonly)
+
+                                        .mb-3
+                                            label.form-label Email cím
+                                            input.form-control#email(type="email", readonly)
+
+                                        .mb-3
+                                            label.form-label Születési Dátum
+                                            input.form-control#dateOfBirth(type="date")
+
+                                        .mb-3
+                                            label.form-label Telefonszám
+                                            input.form-control#phoneNumber(type="tel", placeholder="+36 01 234 5678")
+
+                                        .mb-3
+                                            label.form-label Vészhelyzet estén értesítendő
+                                            input.form-control#emergencyContact(type="text", placeholder="Name & phone number")
+
+                                        button.btn.btn-primary(type="submit") Mentés
+
+                        // Change Password Tab
+                        .tab-pane.fade#change-password
+                            h3.mb-4 Change Password
+                            form(style="max-width: 500px")#passwordUpdateForm
+                                .mb-3
+                                    label.form-label Jelenlegi jelszavad
+                                    input.form-control#oldPassword(type="password")
+
+                                .mb-3
+                                    label.form-label Új jelszó
+                                    input.form-control#newPassword(type="password")
+
+                                .mb-3
+                                    label.form-label Új jelszó újra
+                                    input.form-control#newPasswordConfirm(type="password")
+
+                                button.btn.btn-primary(type="submit") Update Password
+
+                        // Delete Account Tab
+                        .tab-pane.fade#delete-account
+                            h3.text-danger.mb-3 Fiók törlése
+                            p.text-muted
+                                | Ez a művelet nem visszavonható! Biztos törölni szeretné a fiókját?
+                            button.btn.btn-danger(
+                                data-bs-toggle="modal",
+                                data-bs-target="#deleteAccountModal"
+                            ) Fiók törlése
+
+block modals
+    .modal.fade#deleteAccountModal(tabindex="-1")
+        .modal-dialog.modal-dialog-centered
+            .modal-content
+                .modal-header
+                    h5.modal-title.text-danger Fiók törlésének megerősítése
+                    button.btn-close(type="button", data-bs-dismiss="modal")
+                .modal-body
+                    p Biztos törölni szeretné a fiókját?
+                .modal-footer
+                    button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Mégse
+                    button.btn.btn-danger#deleteAccountButton(type="button") Igen, törlés!
+    include modal/profilePicCutModal

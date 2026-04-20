@@ -1,0 +1,28 @@
+extends layout
+
+block title
+    title Ranger - Táboraim
+
+block scripts
+    script(src="./js/camps.js", defer)
+
+block content
+    main.container.min-vh-100.d-flex.justify-content-center
+        .container.my-4
+            .d-flex.justify-content-center.mb-4
+                .btn-group(role="group" aria-label="Camp type")
+                    input.btn-check.gradient-radio-button-left#owned(type="radio" name="campType" checked)
+                    label.btn.btn-outline-primary.btn-lg.px-5(for="owned") Szervezett
+
+                    input.btn-check.gradient-radio-button-right#joined(type="radio" name="campType")
+                    label.btn.btn-outline-secondary.btn-lg.px-5(for="joined") Csatlakozott
+
+            .row.g-4#cardHolder
+
+block modals
+    include modal/joinCampModal
+    include modal/createCampModal
+    include modal/paymentModal
+    include modal/joinedCampInfo
+
+

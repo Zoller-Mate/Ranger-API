@@ -1,0 +1,14 @@
+extends layout
+
+block title
+    title Email cím megerősítve!
+
+block scripts
+    script(src='/js/joinCamp.js' defer)
+
+block content
+    p.d-none #{code}
+    .m-auto.mt-5.text-center.w-auto
+        h1#mainMsg Táborba csatlakozás folyamatban...
+        p#confirmMsg
+

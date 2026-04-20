@@ -1,0 +1,16 @@
+.modal.fade#profilePicCutModal(tabindex="-1", aria-labelledby="profilePicCutModalLabel", aria-hidden="true")
+    .modal-dialog.modal-dialog-centered
+        .modal-content.border-primary
+            .modal-header.bg-danger-pimary
+                h1#profilePicCutModalLabel.modal-title.fs-5.text-primary-emphasis
+                    | Kérlek méretezd be a profilképed!
+                button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+            .modal-body.d-flex.flex-column.gap-2#profilePicBody
+                label.btn.btn-outline-primary.btn-sm
+                    | Kép kiválasztása
+                    input#profilePicPicker(type="file", hidden)
+                .flex-grow-1.cropper-wrapper
+                    img.d-none#cropImg
+                button.btn.btn-primary#doneProfileCrop Kész
+            .modal-footer
+                button.btn.btn-danger(type="button", data-bs-dismiss="modal") Bezárás

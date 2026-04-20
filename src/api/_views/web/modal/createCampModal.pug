@@ -1,0 +1,35 @@
+div#createCampModal.modal.fade(tabindex="-1" aria-labelledby="createCampModalLabel" aria-hidden="true")
+    div.modal-dialog
+        div.modal-content
+            div.modal-header
+                h5#createCampModalLabel.modal-title Tábor Létrehozása
+                button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+            div.modal-body
+                form#campForm
+                    div.mb-3
+                        label.form-label(for="campName") Tábor neve*
+                        input#campName.form-control(type="text", required)
+
+                    div.mb-3
+                        label.form-label(for="startDate") A Tábor első napjának dátuma*
+                        input#startDate.form-control(type="date", required)
+
+                    div.mb-3
+                        label.form-label(for="endDate") A Tábor utolsó napjának dátuma*
+                        input#endDate.form-control(type="date", required)
+
+                    //- Optional Fields
+                    div.mb-3
+                        label.form-label(for="joinCode") Csatlakozási kód (6-12 karakter)
+                        input#joinCode.form-control(type="text")
+
+                    div.mb-3
+                        label.form-label(for="minGroupSize") Legkisebb csoport létszáma(legalább 1)
+                        input#minGroupSize.form-control(type="number", min="1")
+
+                    div.mb-3
+                        button.btn.btn-primary.w-100(type="submit") Tábor Létrehozása
+
+            div.modal-footer
+                button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Mégse
+

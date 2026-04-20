@@ -1,0 +1,20 @@
+extends layout
+
+block title
+    title Ranger - Fizetések
+
+block scripts
+    script(src="./js/payments.js", defer)
+
+block content
+    main.container.min-vh-100.d-flex.justify-content-center
+        .container.my-4
+            .d-flex.justify-content-center.mb-4
+                .btn-group(role="group" aria-label="isPaid")
+                    input.btn-check.gradient-radio-button-left#unPaid(type="radio" name="isPaid" checked)
+                    label.btn.btn-outline-primary.btn-lg.px-5(for="unPaid") Függőben
+
+                    input.btn-check.gradient-radio-button-right#paid(type="radio" name="isPaid")
+                    label.btn.btn-outline-secondary.btn-lg.px-5(for="paid") Befizetve
+
+            .row.g-4#cardHolder

@@ -1,0 +1,22 @@
+.modal.fade#campInfoModal(tabindex="-1", aria-labelledby="campInfoModalLabel", aria-hidden="true")
+    .modal-dialog.modal-dialog-centered
+        .modal-content
+            .modal-header
+                h1#campInfoModalLabel.modal-title.fs-5 Táborvezeő Információk
+                button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+            .modal-body.text-center
+                img.rounded-circle.mb-3#campOwnerProfilePic(
+                    alt='Profile Picture',
+                    width='96',
+                    height='96'
+                )
+
+                h6.mb-1#campOwnerName John Doe
+                p.text-muted.mb-3#campOwnerEmail john.doe@example.com
+
+                ul.list-group.list-group-flush.text-start
+                    li.list-group-item
+                        strong Telefonszám:
+                        p#campOwnerPhoneNumber
+            .modal-footer
+                button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Bezárás

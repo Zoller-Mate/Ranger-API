@@ -1,0 +1,16 @@
+/node_modules/
+/build/
+/migrations/
+/.idea/
+/src/images/qrCodes/
+config.env
+todo.md
+/logs/
+/src/api/views/css
+
+# Build artifacts
+*.js.map
+*.d.ts.map
+drizzle.config.js
+drizzle.config.d.ts
+/ranger-camp-manager-06cd3063146f.json

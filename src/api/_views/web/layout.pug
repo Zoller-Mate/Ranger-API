@@ -1,0 +1,28 @@
+doctype html
+html(lang="hu")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    block title
+      title Ranger - Tábor menedzsment
+    link(rel="icon", type="image/x-icon", href="/src/RangerLogoIcon.ico")
+    link(rel="stylesheet", href="/css/main.css")
+    block head
+    // Scripts
+    script(src='/jquery.js', defer)
+    script(src="/js/bootstrap.bundle.js", defer)
+    script(src="/js/auth.js", defer)
+    script(src="/js/main.js", defer)
+    block scripts
+  body
+    include nav
+    block content
+    include footer
+
+    // Modals
+    include modal/loginModal
+    include modal/signupModal
+    include modal/passwordResetModal
+    block modals
+    include modal/errorModal
+    include modal/messageModal
