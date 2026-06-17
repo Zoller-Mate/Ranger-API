@@ -4,6 +4,7 @@ import * as messageModel from '../models/messageModel';
 import SocketError from '../../utils/socketError';
 import { catchAsyncSocket } from '../../utils/catchAsync';
 import { isUserArchivedInChat } from '../../api/models/chatModel';
+import sendNotification from '../../utils/sendNotification';
 
 /**
  * Message Controller
@@ -147,6 +148,40 @@ export const handleSendMessage = catchAsyncSocket(
       replyToMessage: replyContext,
       userId,
     });
+
+    // Send push notifications to all chat members except the sender
+    // Note: Notification failures are caught and logged separately
+    // They should NOT break the message sending flow
+    try {
+      const chatMemberIds = await chatMemberModel.getChatMemberIds(chatId);
+      const recipientIds = chatMemberIds.filter((id) => id !== userId);
+      
+      if (recipientIds.length > 0) {
+        // Prepare notification message (truncate if too long)
+        const messageText = body.text || '[Non-text message]';
+        const notificationMessage = messageText.length > 100 
+          ? messageText.substring(0, 97) + '...'
+          : messageText;
+
+        // Send notification to each recipient in parallel
+        const notificationPromises = recipientIds.map((recipientId) =>
+          sendNotification(recipientId, userName, notificationMessage).catch(
+            (err: any) => {
+              console.error(
+                `[NOTIFICATION_ERROR] Failed to send to ${recipientId}: ${err?.message || err}`,
+              );
+            },
+          ),
+        );
+
+        await Promise.all(notificationPromises);
+      }
+    } catch (err: any) {
+      // Log but don't throw - notification failure shouldn't break message sending
+      console.error(
+        `[NOTIFICATION_BATCH_ERROR] ${err?.message || 'Unknown error'}`,
+      );
+    }
   },
 );
 
